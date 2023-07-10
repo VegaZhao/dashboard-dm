@@ -1,0 +1,106 @@
+server:
+  port: 8085
+  # 解决 Invalid character found in method name. HTTP method names must be tokens
+  tomcat:
+    max-http-header-size: 8192
+#    session:
+#        cookie.comment = ＃注释会话cookie。
+#        cookie.domain = ＃会话cookie的域。
+#        cookie.http-only =＃“HttpOnly”标志为会话cookie。
+#        cookie.max-age = ＃会话cookie的最大年龄（以秒为单位）。
+#        cookie.name = ＃会话cookie名称。
+#        cookie.path = ＃会话cookie的路径。
+#        cookie.secure = ＃“Secure”标志为会话cookie。
+#        persistent = false ＃在重新启动之间持续会话数据。
+#        store-dir = ＃用于存储会话数据的目录。
+#        timeout = ＃会话超时（秒）。
+#        tracking-modes =＃会话跟踪模式（以下一个或多个：“cookie”，“url”，“ssl”）。
+
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    # 配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+    filters: stat,wall,log4j
+    # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+    # 合并多个DruidDataSource的监控数据
+    useGlobalDataSourceStat: true
+
+    # 连接池配置
+    max-active: 20
+    initial-size: 1
+    max-wait: 60000
+    min-idle: 1
+    pool-prepared-statements: true
+    max-open-prepared-statements: 20
+
+    #在空闲连接回收器线程运行期间休眠的时间值,以毫秒为单位，一般比minEvictableIdleTimeMillis小
+    time-between-eviction-runs-millis: 60000
+    #连接池中连接，在时间段内一直空闲，被逐出连接池的时间(1000*60*60)，以毫秒为单位
+    min-evictable-idle-time-millis: 300000
+
+    # 连接有效性检测
+    test-while-idle: true
+    test-on-borrow: false
+    test-on-return: false
+    validation-query: SELECT 1
+    druid:
+      username: dm
+      password: dm
+      logSlowSql: true
+      base:
+        name: dashboard
+        url: jdbc:mysql://127.0.0.1:3306/dashboard?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
+        username: dashboard
+        password: dashboard
+        driverClassName: com.mysql.jdbc.Driver
+        initialSize: 5
+        minIdle: 5
+        maxActive: 20
+  #      tysb:
+  #        name: tysb
+  #        url: jdbc:oracle:thin:@localhost:1521:ORCL
+  #        driverClassName: oracle.jdbc.OracleDriver
+  #        username: fitech
+  #        password: fitech
+
+  #  devtools:
+  #    restart:
+  #      enabled: false
+
+
+  # 配置redis
+  redis:
+    database: 0
+    host: "localhost"
+    password: "dashboard_redis"
+    port: 6379
+  # redis 集群可用
+  #        timeout: "0ms"
+  #        lettuce:
+  #            shutdown-timeout: "100ms"
+  #            pool:
+  #               max-idle: 8
+  #               min-idle: 0
+  #               max-active: 8
+  #               max-wait: -1ms
+
+  # 配置neo4j
+  data:
+    neo4j:
+      uri: bolt://localhost:7687
+      username: neo4j
+      password: dmap@123
+
+
+  #配置swagger是否开启
+swagger.enable: false
+
+#配置跨域是否允许
+cors.enable: true
+
+
+
+
+
+
