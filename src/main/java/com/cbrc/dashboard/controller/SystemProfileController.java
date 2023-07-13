@@ -1,7 +1,7 @@
 package com.cbrc.dashboard.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.cbrc.dashboard.service.ISystemOverviewService;
+import com.cbrc.dashboard.service.IProfileService;
 import com.cbrc.dashboard.service.IVulnerabilityService;
 import com.cbrc.dashboard.utils.CommonUtil;
 import com.cbrc.dashboard.utils.WebUtil;
@@ -15,23 +15,26 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/profile")
 public class SystemProfileController {
-    @Autowired
-    private IVulnerabilityService vulnerabilityService;
 
     @Autowired
-    private ISystemOverviewService systemOverviewService;
+    private IProfileService profileService;
 
-    @PostMapping("vuln-list")
-    public JSONObject getVulnerabilityList(@RequestBody JSONObject params) {
+    @ApiOperation(value = "系统漏洞清单", notes = "系统漏洞清单")
+    @PostMapping("vuln-table")
+    public JSONObject getVulnerabilityTableBySystemCtrl(@RequestBody JSONObject params) {
         CommonUtil.hasAllRequired(params,"systemName");
         String systemName = params.getString("systemName");
-        return WebUtil.result(vulnerabilityService.getVulnerabilityList(systemName));
+        String searchKey = params.getString("searchKey");
+        String searchValue = params.getString("searchValue");
+        int startPage = params.getInteger("startPage");
+        int pageSize = params.getInteger("pageSize");
+        return WebUtil.result(profileService.getVulnerabilityTableBySystemSer(systemName,searchKey, searchValue,startPage,pageSize));
     }
 
     @ApiOperation(value = "获取系统名单", notes = "获取系统名单")
     @PostMapping("system-list")
     public JSONObject getSystemListCtrl() {
-        return WebUtil.result(systemOverviewService.getSystemListSer());
+        return WebUtil.result(profileService.getSystemListSer());
     }
 
 }

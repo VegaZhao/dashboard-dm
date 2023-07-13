@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 @TableName("srp_dict_system_list")
-public class SystemList {
+public class SystemListPo {
     @TableField(value = "syscode")
     private String syscode;
 

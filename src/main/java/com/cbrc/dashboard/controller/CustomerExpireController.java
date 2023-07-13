@@ -37,7 +37,6 @@ public class CustomerExpireController {
     }
 
     @ApiOperation(value = "贷款到期明细", notes = "贷款到期明细")
-//    @RequiresPermissions(value = {"stat:customer_expire:customer-expire", "stat:customer_expire:*"}, logical = Logical.OR)
     @PostMapping("customer-expire")
     public JSONObject getCreditCorporationTableByDay(@RequestBody JSONObject params) {
         CommonUtil.hasAllRequired(params,"dateBegin,dateEnd");
