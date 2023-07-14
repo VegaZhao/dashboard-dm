@@ -1,10 +1,8 @@
 package com.cbrc.dashboard.dao.mapper;
 
-import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.cbrc.dashboard.bo.VulnStatDataBo;
 import com.cbrc.dashboard.dao.mapper.provider.ProfileSqlProvider;
-import com.cbrc.dashboard.dao.mapper.provider.VulnerabilitySqlProvider;
 import com.cbrc.dashboard.dao.po.SystemListPo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;

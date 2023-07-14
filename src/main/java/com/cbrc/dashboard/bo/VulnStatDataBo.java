@@ -24,11 +24,11 @@ public class VulnStatDataBo {
 
     private String funcScene;  // 业务功能场景
 
-    private Date discDate;  // 漏洞发现日期
+    private String discDate;  // 漏洞发现日期
 
     private String repaireStatus;  // 修复情况
 
-    private Date repairedDate;  // 修复日期
+    private String repairedDate;  // 修复日期
 
     private String discoverer;  // 漏洞发现人
 

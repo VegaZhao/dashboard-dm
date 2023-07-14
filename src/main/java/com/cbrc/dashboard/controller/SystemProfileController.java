@@ -2,7 +2,6 @@ package com.cbrc.dashboard.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.cbrc.dashboard.service.IProfileService;
-import com.cbrc.dashboard.service.IVulnerabilityService;
 import com.cbrc.dashboard.utils.CommonUtil;
 import com.cbrc.dashboard.utils.WebUtil;
 import io.swagger.annotations.ApiOperation;
